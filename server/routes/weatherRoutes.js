@@ -2,32 +2,35 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-router.get("/:city", async (req,res)=>{
-
-  try{
-
+router.get("/:city", async (req, res) => {
+  try {
     const city = req.params.city;
 
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather`,
+      "https://api.openweathermap.org/data/2.5/weather",
       {
-        params:{
+        params: {
           q: city,
           appid: process.env.API_KEY,
-          units:"metric"
+          units: "metric"
         }
       }
     );
 
+    const data = response.data;
+
     res.json({
-      temp: response.data.main.temp,
-      humidity: response.data.main.humidity
+      city: data.name,
+      temp: data.main.temp,
+      humidity: data.main.humidity,
+      pressure: data.main.pressure,
+      wind: data.wind.speed,
+      visibility: data.visibility
     });
 
-  }catch(err){
-    res.status(500).json({message:"City not found"});
+  } catch (err) {
+    res.status(500).json({ message: "City not found" });
   }
-
 });
 
 module.exports = router;

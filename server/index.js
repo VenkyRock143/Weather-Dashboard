@@ -8,11 +8,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const cityRoutes = require("./routes/cityRoutes");
 const weatherRoutes = require("./routes/weatherRoutes");
-const aiRoutes = require("./routes/aiRoutes");
-const agentRoutes = require("./routes/agentRoutes");
-const ai = require("./routes/ai")
-
-
+const aiRoutes = require("./routes/aiRoutes"); 
 
 const app = express();
 
@@ -24,16 +20,14 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100
 });
-
 app.use(limiter);
 
 connectDB();
 
+// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/cities", cityRoutes);
 app.use("/api/weather", weatherRoutes);
-app.use("/api/ai", aiRoutes);
-app.use("/api/agent", agentRoutes);
-app.use("/api/ai", require("./routes/ai"));
+app.use("/api/ai", aiRoutes); // Handles both /advisor and /query
 
 app.listen(5000, () => console.log("Server running on port 5000"));

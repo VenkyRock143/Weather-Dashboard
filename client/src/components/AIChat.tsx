@@ -53,7 +53,7 @@ export default function AIChat() {
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:scale-105 transition"
       >
-        🌦
+        <h2>AI</h2>
       </button>
 
       {/* Chat Box */}

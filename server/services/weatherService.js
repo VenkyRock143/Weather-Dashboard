@@ -13,11 +13,12 @@ async function getWeather(cityName) {
   );
 
   return {
-    city: response.data.name,
-    temp: response.data.main.temp,
-    humidity: response.data.main.humidity,
-    rain: response.data.rain?.["1h"] || 0,
-    description: response.data.weather[0].description
+    city: data.name,
+  temp: data.main.temp,
+  humidity: data.main.humidity,
+  pressure: data.main.pressure,
+  wind: data.wind.speed,
+  visibility: data.visibility
   };
 }
 

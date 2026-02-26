@@ -5,7 +5,7 @@ import api from "@/lib/api";
 import AuthGuard from "@/components/AuthGuard";
 import { City } from "@/types/city";
 import Link from "next/link";
-// Using the same icon set for a cohesive look
+
 import { FiStar, FiArrowLeft, FiThermometer, FiDroplet } from "react-icons/fi";
 
 export default function Favorites() {
@@ -32,7 +32,7 @@ export default function Favorites() {
       <div className="min-h-screen bg-slate-50 p-6 md:p-10">
         <div className="max-w-4xl mx-auto">
           
-          {/* Back Navigation */}
+          {/*Navigation */}
           <Link 
             href="/dashboard" 
             className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors mb-6 font-medium"
@@ -54,7 +54,6 @@ export default function Favorites() {
           {/* Favorites List */}
           <div className="space-y-4">
             {loading ? (
-              // Simple skeleton state
               [1, 2].map((i) => (
                 <div key={i} className="h-24 bg-white rounded-2xl animate-pulse border border-slate-100" />
               ))

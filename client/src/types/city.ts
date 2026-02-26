@@ -1,4 +1,4 @@
-city.ts
+
 export interface Weather {
   temp: number;
   humidity: number;

@@ -1,31 +1,55 @@
 "use client";
+
 import { useState } from "react";
 import api from "@/lib/api";
 
 export default function SearchBar({ setWeather }: any) {
-
-  const [city,setCity] = useState("");
+  const [city, setCity] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
+    if (!city.trim()) return;
 
-    const res = await api.get(`/weather/${city}`);
+    try {
+      setLoading(true);
 
-    setWeather(res.data);
+      const res = await api.get(`/weather/${city.trim()}`);
+
+      console.log("Backend response:", res.data);
+
+      setWeather(res.data);
+    } catch (error: any) {
+      console.error("Search error:", error);
+      alert("City not found or server error");
+      setWeather(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="flex gap-2 mt-6">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSearch();
+      }}
+      className="flex gap-2"
+    >
       <input
-        className="border px-4 py-2 rounded"
-        placeholder="Enter City"
-        onChange={(e)=>setCity(e.target.value)}
+        type="text"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="Enter city"
+        className="border p-2 rounded w-64"
       />
+
       <button
-        className="bg-blue-600 text-white px-4 rounded"
-        onClick={handleSearch}
+        type="submit"
+        disabled={loading}
+        className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
       >
-        Search
+        {loading ? "Searching..." : "Search"}
       </button>
-    </div>
+    </form>
   );
 }
