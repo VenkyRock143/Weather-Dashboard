@@ -3,7 +3,7 @@ import { useState } from "react";
 import api from "@/lib/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { FiMail, FiLock, FiUserPlus, FiCheck } from "react-icons/fi";
+import { FiMail, FiLock, FiUserPlus, FiCheck, FiArrowLeft } from "react-icons/fi";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -44,7 +44,15 @@ export default function Register() {
   };
 
   return (
+    
     <div className="min-h-[calc(100vh-64px)] bg-slate-50 flex flex-col items-center justify-center p-6">
+      <Link 
+  href="/" 
+  className="absolute top-6 left-6 flex items-center gap-2 text-slate-400 hover:text-blue-600 transition-colors text-sm font-medium group"
+>
+  <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" /> 
+  Back to Home
+</Link>
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2">
           Create Account
@@ -127,7 +135,7 @@ export default function Register() {
         <p className="mt-8 text-center text-sm text-slate-500">
           Already have an account?{" "}
           <Link href="/login" className="text-blue-600 font-bold hover:underline">
-            Sign in
+            Login
           </Link>
         </p>
       </div>

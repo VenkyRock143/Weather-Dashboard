@@ -3,7 +3,7 @@ import { useState } from "react";
 import api from "@/lib/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { FiMail, FiLock, FiArrowRight } from "react-icons/fi";
+import { FiMail, FiLock, FiArrowRight, FiArrowLeft } from "react-icons/fi";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -32,6 +32,13 @@ export default function Login() {
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-slate-50 flex flex-col items-center justify-center p-6">
+      <Link 
+  href="/" 
+  className="absolute top-6 left-6 flex items-center gap-2 text-slate-400 hover:text-blue-600 transition-colors text-sm font-medium group"
+>
+  <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" /> 
+  Back to Home
+</Link>
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2">
           Weather Dashboard
