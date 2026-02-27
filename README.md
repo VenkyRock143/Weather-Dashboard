@@ -91,7 +91,9 @@ cd client
 npm install
 ```
 ### Create a .env.local file:
+```bash
 NEXT_PUBLIC_API_URL=http://localhost:5000
+```
 
 ### Run Frontend
 ```bash
