@@ -12,6 +12,14 @@ const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
+app.use(cors({ 
+origin: [
+'http://localhost:3000', // local dev
+'https://skycast-dashboard-ai.netlify.app/', // your Netlify URL
+],
+credentials: true, 
+}));
+
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
